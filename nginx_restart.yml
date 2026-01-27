@@ -1,6 +1,14 @@
 ---
-- name: Install nginx
-  yum: name=nginx state=present
-
-- name: Copy nginx configuration for wordpress
-  notify: restart nginx
+- name: Gerenciar reinicialização do Nginx em servidores Debian
+  become: yes
+  gather_facts: yes
+  
+  tasks:
+    - name: Verificar sistema operacional
+      ansible.builtin.assert:
+        that:
+          - ansible_facts['os_family'] == "Debian"
+        fail_msg: "Este playbook é específico para sistemas Debian"
+    
+    - name: Coletar informações sobre serviços
+      ansible.builtin
