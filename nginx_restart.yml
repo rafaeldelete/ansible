@@ -1,6 +1,5 @@
 ---
 - name: Reiniciar serviço Nginx em servidores Debian
-  hosts: Clientes-VPS  # ou especifique seu grupo de hosts
   become: yes
   gather_facts: yes
   
