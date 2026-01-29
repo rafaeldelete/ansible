@@ -1,15 +1,8 @@
----
-- name: Reiniciar serviço Nginx em servidores Debian
-  hosts: ClientesVPS  # ou especifique seu grupo de hosts
-  become: yes
-  gather_facts: yes
-  
+- name: Restart Nginx
+  hosts: all
+  become: true
   tasks:
-    - name: Verificar se o Nginx está instalado
-      ansible.builtin.service_facts:
-    
-    - name: Reiniciar serviço Nginx
+    - name: Restart service nginx
       ansible.builtin.service:
         name: nginx
         state: restarted
-      when: "'nginx' in services"
